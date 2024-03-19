@@ -56,11 +56,9 @@ const Admin = () => {
 
   const handleLogout = () => {
     // Your logout logic goes here
-    console.log("Logout clicked");
   };
 
   const handleRemove = async(id) => {
-    console.log(id)
     setBackdrop(true)
     try {
       const response=await axios.post(`${process.env.REACT_APP_URL}/adminRemover`,{id},config)
@@ -78,7 +76,6 @@ const Admin = () => {
 
   const fetchAll=async()=>{
     const response=await axios.get(`${process.env.REACT_APP_URL}/adminFetchAll`,config)
-    console.log(response)
     setData(response.data)
     
   }

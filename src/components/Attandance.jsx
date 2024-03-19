@@ -72,7 +72,6 @@ const AttendanceForm = () => {
     }finally{
       setBackdrop(false)
     }
-    console.log('Attendance submitted:', entries);
   };
 
   const toggleDrawer = (open) => () => {
@@ -93,12 +92,11 @@ const fetchAttendance=async()=>{
   setBackdrop(true)
   try {
     const response=await axios.post(`${process.env.REACT_APP_URL}/fetchAttendance`,{date:selectedDate.format('YYYY-MM-DD')},config)
-    console.log(response)
     let data=[]
     response.data.map((item)=>{
       data.push({id:item.student._id,name:item.student.name,present:item.isPresent==="p",absent:item.isPresent==="a"})
     })
-    console.log(data)
+
     setAttendanceData(data)
   } catch (error) {
     toast.error(error)

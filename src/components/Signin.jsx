@@ -53,7 +53,7 @@ export default function Signin() {
       if(response.data){
         localStorage.setItem('user',JSON.stringify(response.data))
         setUser(response.data)
-        console.log(response.data)
+       
         if (response.data.designation === 'teacher') {
           navigate('/attendance');
         } else if (response.data.designation === 'student') {
