@@ -43,7 +43,13 @@ const AttendanceForm = () => {
     // Add more students as needed
   ]);
 
+useEffect(()=>{
+  
+ setPresent(0)
+  console.log(attendanceData)
+},[attendanceData])
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [present,setPresent]=useState(0)
   const {selectedDate,user,setBackdrop}=useContextHook()
   const navigate=useNavigate()
 
@@ -54,6 +60,7 @@ const AttendanceForm = () => {
         : student
     );
     setAttendanceData(updatedAttendanceData);
+   
   };
 
   const handleSubmit = async() => {
@@ -115,6 +122,17 @@ const fetchAttendance=async()=>{
       <Typography variant="h4" align="center" gutterBottom>
         {`Attendance Record : ${selectedDate.format('YYYY-MM-DD')}`}
       </Typography>
+      <Typography variant="h6" align="center" gutterBottom>
+        {`Total Strength : ${attendanceData.length}`}
+      </Typography>
+      <Typography variant="h6" align="center" gutterBottom>
+        {`present : ${ attendanceData.filter(item=>item.present==true).length}`}
+      </Typography>
+      
+      <Typography variant="h6" align="center" gutterBottom>
+        {`absent : ${attendanceData.filter(item=>item.absent==true).length}`}
+      </Typography>
+      
       <Box sx={{display:"flex",justifyContent:'space-between',margin:"20px 0px"}}>
       <Button onClick={toggleDrawer(true)} variant="contained" color="secondary" endIcon={<CalendarIcon/>} sx={{borderRadius:3,p:"6px 15px"}}>
        calender

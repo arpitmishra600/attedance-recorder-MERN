@@ -63,7 +63,7 @@ export default function Signin() {
         }
       }
     }catch(erro){
-      toast.error(erro.response.data.err)
+      toast.error(erro.response.data?.err)
     }finally{
       setBackdrop(false)
     }
